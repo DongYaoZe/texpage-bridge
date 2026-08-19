@@ -1,0 +1,23 @@
+# Local TeXPage project registry: contains machine paths and live project/version IDs.
+projects.json
+projects.local.json
+
+# Persistent broker/request runtime state.
+requests/
+broker.log
+*.pid
+*.part
+*.tmp
+
+# Python runtime/cache files.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Editor / OS noise.
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

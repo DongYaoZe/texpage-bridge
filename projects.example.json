@@ -1,0 +1,15 @@
+{
+  "_common": {
+    "profile": "C:\\path\\to\\persistent-chromium-profile",
+    "git_remote": "texpage",
+    "browser_workers": 4
+  },
+  "projects": {
+    "example-project": {
+      "repo": "C:\\path\\to\\your\\git-worktree",
+      "project_key": "<texpage-project-key>",
+      "version": "v1.0",
+      "version_no": "<texpage-version-no>"
+    }
+  }
+}
