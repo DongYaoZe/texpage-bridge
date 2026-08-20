@@ -76,6 +76,20 @@ Show the last successful local result without compiling:
 texpage-agent.cmd sample-project status
 ```
 
+### Agent Skill / DeepSeek-era integration
+
+A portable Agent Skill package is available under `integrations/agent-skill/texpage-bridge/`. It deliberately exposes only `build`, `submit`, `request`, `requests`, and `status` through a cross-platform Python adapter; administrative/versioning commands and broker controls are not part of this surface.
+
+The older `texpage-agent.cmd` remains for backward-compatible Windows workflows and has a broader command allow-list. New agent/plugin integrations should use the narrower Skill adapter instead.
+
+Set `TEXPAGE_BRIDGE_HOME` to this checkout, copy the skill directory into a location supported by your agent runtime, and call for example:
+
+```sh
+python scripts/texpage_agent.py sample-project build
+```
+
+The package contains no DeepSeek API client and no TeXPage credentials. It is a `SKILL.md` + CLI integration, not a claim that DeepSeek has a universal plugin ABI. Current CodeWhale / legacy DeepSeek-TUI and third-party `deepseek-harness` compatibility claims, plus the NJU-specific provider assumptions that remain behind the broker, are documented in [`COMPATIBILITY.md`](COMPATIBILITY.md).
+
 ## One browser, queued top-level window pool
 
 The bridge uses one long-lived local broker on `127.0.0.1:43177` by default.
