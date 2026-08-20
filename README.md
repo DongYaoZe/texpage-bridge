@@ -76,19 +76,21 @@ Show the last successful local result without compiling:
 texpage-agent.cmd sample-project status
 ```
 
-### Agent Skill / DeepSeek-era integration
+### Official DeepSeek Harness plugin + generic Agent Skill fallback
 
-A portable Agent Skill package is available under `integrations/agent-skill/texpage-bridge/`. It deliberately exposes only `build`, `submit`, `request`, `requests`, and `status` through a cross-platform Python adapter; administrative/versioning commands and broker controls are not part of this surface.
+An installable plugin for the **official** `deepseek-ai/deepseek-harness` is available under `integrations/deepseek-harness/texpage-bridge/`. It follows the current dsh bundle/Cordis conventions and registers only `texpage_build`, `texpage_submit`, and `texpage_status`. It was implemented against the developer-preview snapshot `deepseek-ai/deepseek-harness@141eb6fef83422698aef7a981029e843e8161534` (`dsh 0.1.0-rc.8`, commit dated 2026-08-19 UTC); see the package [README](integrations/deepseek-harness/texpage-bridge/README.md) for installation, configuration, pinned official-source citations, and the breaking-change warning.
 
-The older `texpage-agent.cmd` remains for backward-compatible Windows workflows and has a broader command allow-list. New agent/plugin integrations should use the narrower Skill adapter instead.
+The existing portable Agent Skill under `integrations/agent-skill/texpage-bridge/` remains the generic fallback for Skill-aware runtimes. It exposes `build`, `submit`, `request`, `requests`, and `status` through a cross-platform Python adapter while keeping administrative/versioning commands and broker controls outside the surface.
 
-Set `TEXPAGE_BRIDGE_HOME` to this checkout, copy the skill directory into a location supported by your agent runtime, and call for example:
+The older `texpage-agent.cmd` remains for backward-compatible Windows workflows and has a broader command allow-list. New DeepSeek Harness integrations should use the official dsh package; other runtimes can continue to use the narrow Skill adapter.
+
+For the fallback adapter, set `TEXPAGE_BRIDGE_HOME` to this checkout, copy the skill directory into a location supported by the target runtime, and call for example:
 
 ```sh
 python scripts/texpage_agent.py sample-project build
 ```
 
-The package contains no DeepSeek API client and no TeXPage credentials. It is a `SKILL.md` + CLI integration, not a claim that DeepSeek has a universal plugin ABI. Current CodeWhale / legacy DeepSeek-TUI and third-party `deepseek-harness` compatibility claims, plus the NJU-specific provider assumptions that remain behind the broker, are documented in [`COMPATIBILITY.md`](COMPATIBILITY.md).
+Neither integration contains a DeepSeek API client or TeXPage credentials. The official Harness compatibility boundary, generic fallback matrix, and NJU-specific provider assumptions that remain behind the broker are documented in [`COMPATIBILITY.md`](COMPATIBILITY.md).
 
 ## One browser, queued top-level window pool
 

@@ -22,6 +22,8 @@ The only exposed commands are:
 
 Administrative/versioning commands remain outside this package. The adapter validates the project alias and arguments, then launches the checkout's `texpage_bridge.py` as a subprocess. It never opens `projects.json` itself.
 
-## Why a Skill + CLI instead of a claimed DeepSeek plugin
+## Why keep the Skill + CLI fallback
 
-As of 2026-08-20 there is no single DeepSeek-wide plugin ABI that all projects named "deepseek-harness" implement. A `SKILL.md` plus a narrow CLI is portable across skill-aware agents and avoids coupling TeXPage credentials or broker internals to a model-specific runtime. See `../../../COMPATIBILITY.md` for verified upstream references and compatibility claims.
+The official `deepseek-ai/deepseek-harness` now has a real Cordis/dsh plugin integration in `../../deepseek-harness/texpage-bridge/`. This Skill remains useful for CodeWhale and other `SKILL.md`-aware runtimes that do not load the official Harness bundle format.
+
+The official dsh plugin ABI should not be generalized to every third-party project that happens to use a DeepSeek or `deepseek-harness` name. This fallback keeps a small subprocess contract and does not couple TeXPage credentials or broker internals to any one agent runtime. See `../../../COMPATIBILITY.md` for the pinned official Harness snapshot and the separate generic compatibility claims.

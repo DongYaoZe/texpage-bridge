@@ -70,4 +70,4 @@ If the bridge reports login/session expiry or another privileged infrastructure 
 
 ## Compatibility note
 
-This is an Agent Skill plus a thin CLI adapter, not an official DeepSeek plugin ABI. See the repository `COMPATIBILITY.md` for the currently verified CodeWhale / legacy DeepSeek-TUI and third-party harness landscape.
+This directory is the generic Agent Skill plus thin CLI fallback. The repository separately ships a real official DeepSeek Harness Cordis/dsh package under `integrations/deepseek-harness/texpage-bridge/`. See `COMPATIBILITY.md` for the pinned official Harness developer-preview snapshot, CodeWhale / legacy DeepSeek-TUI fallback notes, and third-party harness distinctions.

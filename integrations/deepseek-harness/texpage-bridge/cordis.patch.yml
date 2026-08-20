@@ -1,0 +1,5 @@
+- insert:
+    - id: texpage-bridge
+      name: dsh-texpage-bridge
+      config:
+        projects: []
